@@ -1,0 +1,30 @@
+#!/bin/env python3
+
+
+import re
+
+
+if __name__ == '__main__':
+    """
+    -1 if line neither starts nore ends with hackerrank
+     1 if line starts with hackerrank
+     2 if line ends with hackerrank
+     0 if line both starts and ends with hackerrank
+    """
+    n = int(input())
+    for i in range(n):
+        s = str(input())
+
+        score = -1  # assume none
+
+        start = re.search(r'^hackerrank', s) is not None
+        end = re.search(r'hackerrank$', s) is not None
+
+        if start and end:
+            score = 0
+        elif end:
+            score = 2
+        elif start:
+            score = 1
+
+        print(score)

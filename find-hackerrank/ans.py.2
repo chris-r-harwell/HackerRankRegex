@@ -1,0 +1,49 @@
+#!/bin/env python3
+# \w word char [0-9 a-Z]
+# \W non-word
+# \s whitespace
+# \S non-whitspace
+# [^a] not a
+# \d digit [0-9]
+# \D not digit
+# ^ start of line
+# $ end of line
+# [a-z] all lower alpha char from a to z inclusive
+# [A-Z] all upper alpha char from A to Z inclusive
+# [0-9] all digits from 0 to 9 inclusive
+#
+# {n} matches preceding item exactly n times
+# {n,m} matches preceding item at least n and no more than m times inclusive
+# * matches preceding item 0 or more times
+# + matches preceding item 1 or more times
+
+import re
+
+
+regex_starts_with = r'^hackerrank'
+regex_ends_with = r'hackerrank$'
+
+if __name__ == '__main__':
+    """
+    -1 if line neither starts nore ends with hackerrank
+     1 if line starts with hackerrank
+     2 if line ends with hackerrank
+     0 if line both starts and ends with hackerrank
+    """
+    n = int(input())
+    for i in range(n):
+        s = str(input())
+
+        score = -1  # assume none
+
+        start = re.search(regex_starts_with, s) is not None
+        end = re.search(regex_ends_with, s) is not None
+
+        if start and end:
+            score = 0
+        elif end:
+            score = 2
+        elif start:
+            score = 1
+
+        print(score)
